@@ -22,16 +22,16 @@ class GameManager {
 			player->jump();
 		}
 		void drawObjects(sf::RenderWindow* window) {
-			vector<Pipe> pipes = pipeController.pipes();
+			vector<Pipe> pipes = pipeController.allPipes();
 			for (Pipe pipe : pipes) {
-				window->draw(pipe.sprite);
+				//window->draw(pipe.getSprite());
 			}
 			window->draw(player->sprite());
 		}
 		bool gameOver() {
-			vector<Pipe> pipes = pipeController.pipes();
+			vector<Pipe> pipes = pipeController.allPipes();
 			for (Pipe pipe : pipes) {
-				if (player->sprite().getGlobalBounds().intersects(pipe.sprite.getGlobalBounds())) {
+				if (player->sprite().getGlobalBounds().intersects(pipe.getSprite().getGlobalBounds())) {
 					return true;
 				}
 			}

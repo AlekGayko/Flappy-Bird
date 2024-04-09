@@ -1,7 +1,7 @@
 #ifndef OBJECTSTATE_H
 #define OBJECTSTATE_H
 #include <SFML/Graphics.hpp>
-#include <iostream>
+
 using namespace sf;
 
 struct ObjectState {

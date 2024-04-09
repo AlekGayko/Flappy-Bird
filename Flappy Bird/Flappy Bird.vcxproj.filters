@@ -49,5 +49,8 @@
     <Image Include="..\..\..\..\OneDrive\Documents\Aseprite-v1.3-beta21\Bird.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\..\..\..\Downloads\background.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

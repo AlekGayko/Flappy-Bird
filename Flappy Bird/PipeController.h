@@ -15,7 +15,7 @@ class PipeController {
 		float cutoffPoint = -100;
 	public:
 		PipeController() : PipeController(60) {}
-		PipeController(unsigned int tickSpeed) : tickSpeed(tickSpeed), spawnPoint(100, 100), pipeVelocity(-5, 0) {}	
+		PipeController(unsigned int tickSpeed) : tickSpeed(tickSpeed), spawnPoint(100, 100), pipeVelocity(-100, 0) {}	
 		void createPipe() { pipes.push_back(Pipe(spawnPoint, pipeVelocity, tickSpeed)); }
 		void destroyPipe() { pipes.erase(pipes.begin()); }
 		bool isPipeOutOfBounds() {
@@ -38,7 +38,7 @@ class PipeController {
 			ticks++;
 			return;
 		}
-		vector<Pipe> pipes() {
+		vector<Pipe> allPipes() {
 			return pipes;
 		}
 };

@@ -1,12 +1,9 @@
 #ifndef PIPECONTROLLER_H
 #define PIPECONTROLLER_H
 #include "Pipe.h"
-
 #include <vector>
-#include <chrono>
-using namespace std;
-using namespace chrono;
 
+using namespace std;
 
 class PipeController {
 	private:
@@ -40,6 +37,9 @@ class PipeController {
 			}
 			ticks++;
 			return;
+		}
+		vector<Pipe> pipes() {
+			return pipes;
 		}
 };
 

@@ -6,7 +6,7 @@ class Bird : public Object {
 		float gravity = -9.81;
 	public:
 		Bird() : Bird(Vector2f(100, 100), 60) {}
-		Bird(Vector2f spawnPoint, unsigned tickSpeed) : Object(spawnPoint, Vector2f(0, 0), Vector2f(0, gravity), tickSpeed) {}
+		Bird(Vector2f spawnPoint, unsigned tickSpeed) : Object('b', spawnPoint, Vector2f(0, 0), Vector2f(0, gravity), tickSpeed) {}
 		void jump() {
 			objState.acceleration.y = 1000;
 		}

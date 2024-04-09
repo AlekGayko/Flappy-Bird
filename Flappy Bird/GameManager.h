@@ -19,6 +19,23 @@ class GameManager {
 
 		void nextTick() {
 			pipeController.updatePipes();
+			player->jump();
+		}
+		void drawObjects(sf::RenderWindow* window) {
+			vector<Pipe> pipes = pipeController.pipes();
+			for (Pipe pipe : pipes) {
+				window->draw(pipe.sprite);
+			}
+			window->draw(player->sprite());
+		}
+		bool gameOver() {
+			vector<Pipe> pipes = pipeController.pipes();
+			for (Pipe pipe : pipes) {
+				if (player->sprite().getGlobalBounds().intersects(pipe.sprite.getGlobalBounds())) {
+					return true;
+				}
+			}
+			return false;
 		}
 };
 

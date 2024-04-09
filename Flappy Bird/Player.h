@@ -12,6 +12,7 @@ class Player {
 		void jump() {
 			bird.jump();
 		}
+		Sprite sprite() { return bird.sprite; }
 };
 
 #endif

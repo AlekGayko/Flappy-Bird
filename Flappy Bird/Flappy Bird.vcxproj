@@ -142,6 +142,10 @@
     <ClInclude Include="Pipe.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\OneDrive\Documents\Aseprite-v1.3-beta21\Bird.png" />
+    <Image Include="..\..\..\..\OneDrive\Documents\Aseprite-v1.3-beta21\Pipe.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -29,6 +29,7 @@ class Player {
 		}
 		Sprite sprite() { return bird.getSprites()[0]; }
 		bool dead() { return isDead; }
+		float x() { return bird.objState.position.x; }
 };
 
 #endif

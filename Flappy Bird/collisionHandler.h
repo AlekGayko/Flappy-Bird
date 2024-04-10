@@ -41,7 +41,7 @@ class CollisionHandler {
 			if (obj2.getType() == 'p') {
 				obj1.objState.velocity.x = -100;
 				obj1.objState.velocity.y = obj1.objState.velocity.y < 0 && obj1.objState.position.y <= obj2.objState.position.y + 300 ? -obj1.objState.velocity.y : obj1.objState.velocity.y;
-				obj1.objState.velocity.y = 100;
+				//obj1.objState.velocity.y = 100;
 			}
 			else if (obj2.getType() == 'f') {
 				obj1.objState.position.y = obj2.objState.position.y - 1000;

@@ -57,6 +57,7 @@ class Object {
 			return sprites;
 		}
 		char getType() { return type; }
+		float x() { return objState.position.x; }
 };
 
 #endif

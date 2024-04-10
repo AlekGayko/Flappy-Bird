@@ -144,6 +144,7 @@
     <ClInclude Include="Bird.h" />
     <ClInclude Include="Pipe.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="TextManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\Downloads\background.jpg" />

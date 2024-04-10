@@ -14,8 +14,6 @@ class Pipe : public Object {
 			sprites.push_back(sprite1);
 			sprites.push_back(sprite2);
 		}
-		float x() {	return objState.position.x;	}
-
 };
 
 #endif

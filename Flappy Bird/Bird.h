@@ -16,7 +16,8 @@ class Bird : public Object {
 			sprites[0].setScale(0.6f, 0.6f);
 		}
 		void jump() {
-			objState.acceleration.y = -50000;
+			objState.acceleration.y = -30000;
+			objState.velocity.y = 0;
 			startRotating = true;
 			ticksSinceJump = 0;
 		}
@@ -28,7 +29,7 @@ class Bird : public Object {
 					sprites[0].setRotation(359);
 				}
 				else {
-					sprites[0].setRotation(max(360 - maxRoationAngle, sprites[0].getRotation() - 0.5f));
+					sprites[0].setRotation(max(360 - maxRoationAngle, sprites[0].getRotation() - 1));
 					if (ticksSinceJump > maxRoationAngle) {
 						startRotating = false;
 						ticksSinceJump = 0;
@@ -43,7 +44,7 @@ class Bird : public Object {
 					}
 					else {
 						ticksSinceJump++;
-						sprites[0].setRotation(sprites[0].getRotation() + 0.5f);
+						sprites[0].setRotation(sprites[0].getRotation() + 1);
 					}
 				}
 			}

@@ -14,6 +14,7 @@ class PipeController {
 		unsigned short int tickSpeed = 0;
 		unsigned short int spawnLine = 700;
 		unsigned short int pipeGap = 150;
+		unsigned int ticksSincePass = 0;
 		Vector2f pipeVelocity;
 		short int cutoffPoint = -100;
 	public:
@@ -37,6 +38,7 @@ class PipeController {
 			return;
 		}
 		void updatePipes() {
+			ticksSincePass++;
 			incrementPipes();
 			if (isPipeOutOfBounds() && pipes.size() > 0) {
 				destroyPipe();
@@ -49,6 +51,16 @@ class PipeController {
 		}
 		vector<Pipe> allPipes() {
 			return pipes;
+		}
+		bool passedPipe(int xPos) {
+			int tolerance = 10;
+			for (Pipe pipe : pipes) {
+				if (abs(pipe.x() - xPos) < tolerance && ticksSincePass / tickSpeed > 1) {
+					ticksSincePass = 0;
+					return true;
+				}
+			}
+			return false;
 		}
 };
 

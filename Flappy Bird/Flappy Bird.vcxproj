@@ -134,6 +134,9 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CollisionHandler.h" />
+    <ClInclude Include="Floor.h" />
+    <ClInclude Include="FloorController.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="PipeController.h" />
     <ClInclude Include="ObjectState.h" />
@@ -146,6 +149,7 @@
     <Image Include="..\..\..\..\Downloads\background.jpg" />
     <Image Include="..\..\..\..\OneDrive\Documents\Aseprite-v1.3-beta21\Bird.png" />
     <Image Include="..\..\..\..\OneDrive\Documents\Aseprite-v1.3-beta21\Pipe.png" />
+    <Image Include="floor.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

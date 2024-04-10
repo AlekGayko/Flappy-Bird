@@ -3,7 +3,7 @@
 #include "Object.h"
 class Bird : public Object {
 	private:
-		float gravity = -9.81;
+		float gravity = -100;
 	public:
 		Bird() : Bird(Vector2f(100, 100), 60) {}
 		Bird(Vector2f spawnPoint, unsigned tickSpeed) : Object('b', spawnPoint, Vector2f(-10, 0), Vector2f(0, gravity), tickSpeed) {}

@@ -10,29 +10,31 @@ class PipeController {
 		vector<Pipe> pipes;
 		unsigned long long int ticks = 0;
 		unsigned int tickSpeed = 0;
+		unsigned int length = 0;
 		Vector2f spawnPoint;
 		Vector2f pipeVelocity;
 		float cutoffPoint = -100;
 	public:
 		PipeController() : PipeController(60) {}
-		PipeController(unsigned int tickSpeed) : tickSpeed(tickSpeed), spawnPoint(100, 100), pipeVelocity(-100, 0) {}	
-		void createPipe() { pipes.push_back(Pipe(spawnPoint, pipeVelocity, tickSpeed)); }
-		void destroyPipe() { pipes.erase(pipes.begin()); }
+		PipeController(unsigned int tickSpeed) : tickSpeed(tickSpeed), spawnPoint(400, 100), pipeVelocity(0, 0) {}
+		void createPipe() { length++;  pipes.push_back(Pipe(spawnPoint, pipeVelocity, tickSpeed)); }
+		void destroyPipe() { cout << "pipe deleted-----------" << endl; pipes.erase(pipes.begin()); }
+		unsigned int size() { return length; }
 		bool isPipeOutOfBounds() {
 			return !pipes.empty() && pipes.front().x() < cutoffPoint;
 		}
 		void incrementPipes() {
-			for (Pipe pipe : pipes) {
-				pipe.increment();
+			for (size_t it = 0; it < pipes.size(); it++) {
+				pipes[it].increment();
 			}
 			return;
 		}
 		void updatePipes() {
 			incrementPipes();
-			if (isPipeOutOfBounds()) {
+			if (isPipeOutOfBounds() && length > 0) {
 				destroyPipe();
 			}
-			if (ticks % tickSpeed == 0) {
+			if (length < 5 && ticks % tickSpeed == 0) {
 				createPipe();
 			}
 			ticks++;

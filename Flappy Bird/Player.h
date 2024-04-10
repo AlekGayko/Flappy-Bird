@@ -12,6 +12,9 @@ class Player {
 		void jump() {
 			bird.jump();
 		}
+		void increment() {
+			bird.increment();
+		}
 		Sprite sprite() { return bird.getSprite(); }
 };
 

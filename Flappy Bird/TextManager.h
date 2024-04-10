@@ -58,6 +58,7 @@ class TextManager {
 				textVector.push_back(gameOver);
 				textVector.push_back(ScoreLabel);
 				pipeCounter.setPosition(ScoreLabel.getPosition().x, ScoreLabel.getPosition().y + 75);
+				setOrigin(pipeCounter);
 			}
 			if (!gameStarted) {
 				textVector.push_back(startDirections);

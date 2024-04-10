@@ -11,6 +11,8 @@ class GameManager {
 		unsigned int tickSpeed = 0;
 		unsigned int pipesPassed = 0;
 		bool gameStarted = false;
+		sf::Sprite scoresheet;
+		sf::Texture scoresheetTexture;
 		Player player;
 		PipeController pipeController;
 		FloorController floors;
@@ -22,6 +24,11 @@ class GameManager {
 			pipeController = PipeController(tickSpeed);
 			player = Player(tickSpeed);
 			floors = FloorController(tickSpeed);
+			scoresheetTexture.loadFromFile("scoreSheet.png");
+			scoresheet.setTexture(scoresheetTexture);
+			scoresheet.setOrigin(scoresheet.getGlobalBounds().left + scoresheet.getGlobalBounds().width / 2.0f, scoresheet.getGlobalBounds().top + scoresheet.getGlobalBounds().height / 2.0f);
+			scoresheet.setScale(7.2f, 7.2f);
+			scoresheet.setPosition(320, 430);
 		}
 		void nextTick() {
 			if (gameStarted) {
@@ -42,16 +49,23 @@ class GameManager {
 			vector<Pipe> pipes = pipeController.allPipes();
 			vector<Floor> floorObjects = floors.getFloors();
 			vector<sf::Text> textVector = texts.texts();
+
+			window->draw(player.sprite());
+
 			for (Pipe pipe : pipes) {
 				vector<Sprite> sprites = pipe.getSprites();
 				for (Sprite sprite : sprites) {
 					window->draw(sprite);
 				}
 			}
+
 			for (Floor floor : floorObjects) {
 				window->draw(floor.getSprites()[0]);
 			}
-			window->draw(player.sprite());
+			
+			if (textVector.size() > 1 && gameStarted) {
+				window->draw(scoresheet);
+			}
 			for (sf::Text text : textVector) {
 				window->draw(text);
 			}

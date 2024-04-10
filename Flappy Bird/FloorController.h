@@ -10,7 +10,7 @@ class FloorController {
 		vector<Floor> floors;
 		Vector2f spawnPoint1;
 		Vector2f spawnPoint2;
-		int cutoffPoint = -1800;
+		int cutoffPoint = -997;
 		void shuffle() {
 			if (floors[0].x() < cutoffPoint) {
 				floors.erase(floors.begin());
@@ -21,7 +21,7 @@ class FloorController {
 		}
 	public:
 		FloorController() : FloorController(60) {}
-		FloorController(unsigned int tickSpeed) : spawnPoint1(0, 780), spawnPoint2(spawnPoint1.x + 1815, spawnPoint1.y), tickSpeed(tickSpeed) {
+		FloorController(unsigned int tickSpeed) : spawnPoint1(0, 780), spawnPoint2(spawnPoint1.x + 997, spawnPoint1.y), tickSpeed(tickSpeed) {
 			floors.push_back(Floor(tickSpeed, spawnPoint1));
 			floors.push_back(Floor(tickSpeed, spawnPoint2));
 		}

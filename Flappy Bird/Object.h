@@ -42,11 +42,7 @@ class Object {
 				objState.acceleration.y = usualAcceleration;
 			}
 			for (size_t it = 0; it < sprites.size(); it++) {
-				sprites[it].setPosition(objState.position.x, sprites[it].getPosition().y + objState.velocity.y / tickSpeed);
-			}
-			if (type == 't') {
-				cout << sprites[0].getPosition().x << " " << sprites[0].getPosition().y << endl;
-				cout << sprites[1].getPosition().x << " " << sprites[1].getPosition().y << endl;
+				sprites[it].setPosition(sprites[it].getPosition().x + objState.velocity.x / tickSpeed, sprites[it].getPosition().y + objState.velocity.y / tickSpeed);
 			}
 			return;
 		}

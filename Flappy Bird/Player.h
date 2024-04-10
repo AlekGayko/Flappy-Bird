@@ -8,7 +8,7 @@ class Player {
 		Bird bird;
 		bool isDead = false;
 		int ticksSinceDeath = 0;
-		float gravity = 1000;
+		float gravity = 2000;
 	public:
 		Player() : Player(60) {}
 		Player(unsigned int tickSpeed) {

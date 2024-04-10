@@ -7,7 +7,7 @@ using namespace std;
 using namespace sf;
 
 int main() {
-	sf::RenderWindow window(VideoMode(600, 800), "Flappy Bird", Style::Titlebar | Style::Close);
+	sf::RenderWindow window(VideoMode(640, 980), "Flappy Bird", Style::Titlebar | Style::Close);
 	sf::Vector2i mousePosition = Mouse::getPosition(window);
 	sf::Event event;
 	sf::Sprite background;
@@ -18,9 +18,13 @@ int main() {
 	window.setFramerateLimit(tickSpeed);
 	GameManager manager = GameManager(tickSpeed);
 	while (window.isOpen()) {
+		window.clear();
 		while (window.pollEvent(event)) {
 			if (event.type == Event::Closed) {
 				window.close();
+			}
+			else {
+				manager.playerMove(event);
 			}
 		}
 		window.draw(background);

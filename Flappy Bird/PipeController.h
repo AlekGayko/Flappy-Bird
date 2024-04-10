@@ -4,7 +4,7 @@
 #include <vector>
 
 using namespace std;
-
+class CollisionHandler;
 class PipeController {
 	friend CollisionHandler;
 	private:
@@ -17,9 +17,9 @@ class PipeController {
 		float cutoffPoint = -100;
 	public:
 		PipeController() : PipeController(60) {}
-		PipeController(unsigned int tickSpeed) : tickSpeed(tickSpeed), spawnPoint(400, 100), pipeVelocity(0, 0) {}
+		PipeController(unsigned int tickSpeed) : tickSpeed(tickSpeed), spawnPoint(700, 100), pipeVelocity(-100, 0) {}
 		void createPipe() { length++;  pipes.push_back(Pipe(spawnPoint, pipeVelocity, tickSpeed)); }
-		void destroyPipe() { cout << "pipe deleted-----------" << endl; pipes.erase(pipes.begin()); }
+		void destroyPipe() { cout << "pipe deleted-----------" << endl; length--; pipes.erase(pipes.begin()); }
 		unsigned int size() { return length; }
 		bool isPipeOutOfBounds() {
 			return !pipes.empty() && pipes.front().x() < cutoffPoint;
@@ -35,7 +35,7 @@ class PipeController {
 			if (isPipeOutOfBounds() && length > 0) {
 				destroyPipe();
 			}
-			if (length < 5 && ticks % tickSpeed == 0) {
+			if (length < 5 && ticks % (tickSpeed * 5) == 0) {
 				createPipe();
 			}
 			ticks++;

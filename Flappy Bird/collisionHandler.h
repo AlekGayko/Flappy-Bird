@@ -12,17 +12,19 @@ class CollisionHandler {
 			//does player collide with any pipes?
 			for (size_t it = 0; it < pipeController.pipes.size(); it++) {
 				if (isCollision(player.bird, pipeController.pipes[it])) {
+					player.isDead = true;
 					collisionOccurred = true;
 				}
 			}
 			//does player collide with floor?
 			for (size_t it = 0; it < floors.floors.size(); it++) {
 				if (isCollision(player.bird, floors.floors[it])) {
+					player.isDead = true;
 					collisionOccurred = true;
 				}
 			}
 
-			collisionOccurred = false;
+			return collisionOccurred;
 		}
 		bool isCollision(Object& obj1, Object& obj2) {
 			if (obj1.getSprite().getGlobalBounds().intersects(obj2.getSprite().getGlobalBounds())) {
@@ -32,10 +34,10 @@ class CollisionHandler {
 		}
 		void reactionPhysics(Object& obj1, Object& obj2) {
 			if (obj2.getType() == 'p') {
-				obj1.objState.velocity.x *= -1;
+				obj1.objState.velocity.x = -100;
 			}
 			else if (obj2.getType() == 'f') {
-				obj1.objState.velocity.y *= -1;
+				obj1.objState.velocity.y = 0;
 			}
 			else {
 				cerr << "incorrect collision" << endl;

@@ -23,12 +23,20 @@ class GameManager {
 			pipeController.updatePipes();
 			floors.update();
 			player.increment();
-			player.jump();
+		}
+		void playerMove(sf::Event event) {
+			if ((event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left) || (event.type == Event::KeyPressed && event.key.code == Keyboard::Space)) {
+				player.jump();
+			}
 		}
 		void drawObjects(sf::RenderWindow* window) {
 			vector<Pipe> pipes = pipeController.allPipes();
+			vector<Floor> floorObjects = floors.getFloors();
 			for (Pipe pipe : pipes) {
 				window->draw(pipe.getSprite());
+			}
+			for (Floor floor : floorObjects) {
+				window->draw(floor.getSprite());
 			}
 			window->draw(player.sprite());
 		}

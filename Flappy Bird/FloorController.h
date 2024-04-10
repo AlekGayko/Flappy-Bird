@@ -2,38 +2,37 @@
 #define FLOORCONTROLLER_H
 #include "Floor.h"
 #include <vector>
-
+class CollisionHandler;
 class FloorController {
 	friend CollisionHandler;
 	private:
 		unsigned int tickSpeed = 0;
-		unsigned int length = 0;
 		vector<Floor> floors;
 		Vector2f spawnPoint1;
 		Vector2f spawnPoint2;
-		int cutoffPoint = -100;
+		int cutoffPoint = -1800;
 		void shuffle() {
 			if (floors[0].x() < cutoffPoint) {
 				floors.erase(floors.begin());
+			}
+			if (floors.size() < 2) {
 				floors.push_back(Floor(tickSpeed, spawnPoint2));
 			}
 		}
 	public:
 		FloorController() : FloorController(60) {}
-		FloorController(unsigned int tickSpeed) : spawnPoint1(600, 700), spawnPoint2(spawnPoint1.x + 1400, spawnPoint1.y) {
+		FloorController(unsigned int tickSpeed) : spawnPoint1(0, 780), spawnPoint2(spawnPoint1.x + 1815, spawnPoint1.y), tickSpeed(tickSpeed) {
 			floors.push_back(Floor(tickSpeed, spawnPoint1));
 			floors.push_back(Floor(tickSpeed, spawnPoint2));
-			length = 2;
 		}
 		void update() {
-			if (length > 0) {
-				shuffle();
-			}
+			shuffle();
 			for (size_t it = 0; it < floors.size(); it++) {
 				floors[it].increment();
 			}
 		}
-		unsigned int size() { return length; }
+		vector<Floor> getFloors() { return floors; }
+		unsigned int size() { return floors.size(); }
 };
 
 #endif

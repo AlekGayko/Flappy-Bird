@@ -4,6 +4,7 @@
 #include <vector>
 
 class FloorController {
+	friend CollisionHandler;
 	private:
 		unsigned int tickSpeed = 0;
 		unsigned int length = 0;

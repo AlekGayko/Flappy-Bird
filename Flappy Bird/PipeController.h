@@ -6,6 +6,7 @@
 using namespace std;
 
 class PipeController {
+	friend CollisionHandler;
 	private:
 		vector<Pipe> pipes;
 		unsigned long long int ticks = 0;

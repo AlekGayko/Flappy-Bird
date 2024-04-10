@@ -8,41 +8,32 @@
 class GameManager {
 	private:
 		unsigned int tickSpeed = 0;
-		Player* player = nullptr;
+		Player player;
 		PipeController pipeController;
 		FloorController floors;
+		CollisionHandler collider;
 	public:
 		GameManager() : GameManager(60) {}
 		GameManager(unsigned int tickSpeed) : tickSpeed(tickSpeed) {
 			pipeController = PipeController(tickSpeed);
-			player = new Player(tickSpeed);
+			player = Player(tickSpeed);
 			floors = FloorController(tickSpeed);
 		}
-		~GameManager() {
-			delete player;
-		}
-
 		void nextTick() {
 			pipeController.updatePipes();
 			floors.update();
-			player->increment();
-			player->jump();
+			player.increment();
+			player.jump();
 		}
 		void drawObjects(sf::RenderWindow* window) {
 			vector<Pipe> pipes = pipeController.allPipes();
 			for (Pipe pipe : pipes) {
 				window->draw(pipe.getSprite());
 			}
-			window->draw(player->sprite());
+			window->draw(player.sprite());
 		}
 		bool gameOver() {
-			vector<Pipe> pipes = pipeController.allPipes();
-			for (Pipe pipe : pipes) {
-				if (player->sprite().getGlobalBounds().intersects(pipe.getSprite().getGlobalBounds())) {
-					return true;
-				}
-			}
-			return false;
+			return collider.initCollision(pipeController, floors, player);
 		}
 };
 

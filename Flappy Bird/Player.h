@@ -2,6 +2,7 @@
 #define PLAYER_H
 #include "Bird.h"
 class Player {
+	friend CollisionHandler;
 	private:
 		Bird bird;
 	public:

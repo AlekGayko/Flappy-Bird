@@ -3,6 +3,7 @@
 #include "ObjectState.h"
 using namespace std;
 class Object {
+	friend CollisionHandler;
 	protected:
 		sf::Sprite sprite;
 		ObjectState objState;
@@ -39,6 +40,7 @@ class Object {
 			return;
 		}
 		Sprite getSprite() { return sprite; }
+		char getType() { return type; }
 };
 
 #endif

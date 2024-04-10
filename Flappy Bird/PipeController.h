@@ -12,14 +12,14 @@ class PipeController {
 		vector<Pipe> pipes;
 		unsigned long long int ticks = 0;
 		unsigned short int tickSpeed = 0;
-		unsigned short int spawnLine = 700;
-		unsigned short int pipeGap = 120;
+		unsigned short int spawnLine = 850;
+		unsigned short int pipeGap = 110;
 		unsigned int ticksSincePass = 0;
 		Vector2f pipeVelocity;
 		short int cutoffPoint = -100;
 	public:
 		PipeController() : PipeController(60) {}
-		PipeController(unsigned int tickSpeed) : tickSpeed(tickSpeed), pipeVelocity(-150, 0) {}
+		PipeController(unsigned int tickSpeed) : tickSpeed(tickSpeed), pipeVelocity(-200, 0) {}
 		void createPipe() { 
 			random_device rd;
 			mt19937 gen(rd());
@@ -43,7 +43,7 @@ class PipeController {
 			if (isPipeOutOfBounds() && pipes.size() > 0) {
 				destroyPipe();
 			}
-			if (pipes.size() < 5 && ticks % (tickSpeed * 3) == 0) {
+			if (pipes.size() < 5 && ticks % (tickSpeed * 2) == 0) {
 				createPipe();
 			}
 			ticks++;
@@ -52,10 +52,10 @@ class PipeController {
 		vector<Pipe> allPipes() {
 			return pipes;
 		}
-		bool passedPipe(int xPos) {
+		bool passedPipe(int xPos, int yPos) {
 			int tolerance = 20;
 			for (Pipe pipe : pipes) {
-				if (abs(pipe.x() - xPos) < tolerance && ticksSincePass / tickSpeed > 1) {
+				if (abs(pipe.x() + pipe.getSprites()[0].getGlobalBounds().width / 2 - xPos) < tolerance && ticksSincePass / tickSpeed > 1) {
 					ticksSincePass = 0;
 					return true;
 				}

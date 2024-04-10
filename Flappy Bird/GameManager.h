@@ -11,6 +11,7 @@ class GameManager {
 		unsigned int tickSpeed = 0;
 		unsigned int pipesPassed = 0;
 		bool gameStarted = false;
+		bool gameFinished = false;
 		sf::Sprite scoresheet;
 		sf::Texture scoresheetTexture;
 		Player player;
@@ -27,7 +28,7 @@ class GameManager {
 			scoresheetTexture.loadFromFile("scoreSheet.png");
 			scoresheet.setTexture(scoresheetTexture);
 			scoresheet.setOrigin(scoresheet.getGlobalBounds().left + scoresheet.getGlobalBounds().width / 2.0f, scoresheet.getGlobalBounds().top + scoresheet.getGlobalBounds().height / 2.0f);
-			scoresheet.setScale(7.2f, 7.2f);
+			scoresheet.setScale(8, 8);
 			scoresheet.setPosition(320, 430);
 		}
 		void nextTick() {
@@ -35,9 +36,12 @@ class GameManager {
 				pipeController.updatePipes();
 				floors.update();
 				player.increment();
-				pipesPassed += pipeController.passedPipe(player.x());
+				pipesPassed += pipeController.passedPipe(player.x(), player.y());
 			}
-			texts.update(gameOver(), gameStarted, pipesPassed);
+			if (!gameFinished) {
+				texts.update(gameOver(), gameStarted, pipesPassed);
+				gameFinished = gameOver();
+			}
 		}
 		void playerMove(sf::Event event) {
 			if ((event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left) || (event.type == Event::KeyPressed && event.key.code == Keyboard::Space)) {
@@ -63,7 +67,7 @@ class GameManager {
 				window->draw(floor.getSprites()[0]);
 			}
 			
-			if (textVector.size() > 1 && gameStarted) {
+			if (textVector.size() > 2 && gameStarted) {
 				window->draw(scoresheet);
 			}
 			for (sf::Text text : textVector) {
@@ -71,7 +75,7 @@ class GameManager {
 			}
 		}
 		bool gameOver() {
-			return collider.initCollision(pipeController, floors, player) || player.dead();
+			return player.dead() || collider.initCollision(pipeController, floors, player);
 		}
 };
 

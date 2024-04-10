@@ -53,6 +53,9 @@
     <ClInclude Include="TextManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TXTFetcher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\OneDrive\Documents\Aseprite-v1.3-beta21\Pipe.png">
@@ -67,5 +70,10 @@
     <Image Include="floor.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="BestScore.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

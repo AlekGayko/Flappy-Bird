@@ -145,12 +145,16 @@
     <ClInclude Include="Pipe.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="TextManager.h" />
+    <ClInclude Include="TXTFetcher.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\Downloads\background.jpg" />
     <Image Include="..\..\..\..\OneDrive\Documents\Aseprite-v1.3-beta21\Bird.png" />
     <Image Include="..\..\..\..\OneDrive\Documents\Aseprite-v1.3-beta21\Pipe.png" />
     <Image Include="floor.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="BestScore.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

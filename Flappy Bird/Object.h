@@ -25,6 +25,7 @@ class Object {
 			}
 			else if (type == 'b') {
 				image.loadFromFile("Bird.PNG");
+
 			}
 			else if (type == 'f') {
 				image.loadFromFile("floor.JPG");
@@ -37,7 +38,6 @@ class Object {
 			objState.position.y += objState.velocity.y / tickSpeed;
 			objState.velocity.x += objState.acceleration.x / tickSpeed;
 			objState.velocity.y += objState.acceleration.y / tickSpeed;
-			//objState.velocity.y = min(float(200), objState.velocity.y + objState.acceleration.y / tickSpeed);
 			if (objState.acceleration.y < 0) {
 				objState.acceleration.y = usualAcceleration;
 			}
@@ -54,6 +54,7 @@ class Object {
 		}
 		char getType() { return type; }
 		float x() { return objState.position.x; }
+		float y() { return objState.position.y; }
 };
 
 #endif

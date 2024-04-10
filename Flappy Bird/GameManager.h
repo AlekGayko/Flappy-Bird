@@ -33,15 +33,18 @@ class GameManager {
 			vector<Pipe> pipes = pipeController.allPipes();
 			vector<Floor> floorObjects = floors.getFloors();
 			for (Pipe pipe : pipes) {
-				window->draw(pipe.getSprite());
+				vector<Sprite> sprites = pipe.getSprites();
+				for (Sprite sprite : sprites) {
+					window->draw(sprite);
+				}
 			}
 			for (Floor floor : floorObjects) {
-				window->draw(floor.getSprite());
+				window->draw(floor.getSprites()[0]);
 			}
 			window->draw(player.sprite());
 		}
 		bool gameOver() {
-			return collider.initCollision(pipeController, floors, player);
+			return collider.initCollision(pipeController, floors, player) || player.dead();
 		}
 };
 

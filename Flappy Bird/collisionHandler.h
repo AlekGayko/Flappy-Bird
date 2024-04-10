@@ -23,21 +23,30 @@ class CollisionHandler {
 					collisionOccurred = true;
 				}
 			}
-
+			if (collisionOccurred) {
+				player.bird.sprites[0].setColor(sf::Color(255, 0, 0));
+			}
 			return collisionOccurred;
 		}
 		bool isCollision(Object& obj1, Object& obj2) {
-			if (obj1.getSprite().getGlobalBounds().intersects(obj2.getSprite().getGlobalBounds())) {
-				reactionPhysics(obj1, obj2);
-				return true;
+			for (size_t it = 0; it < obj2.sprites.size(); it++) {
+				if (obj1.getSprites()[0].getGlobalBounds().intersects(obj2.getSprites()[it].getGlobalBounds())) {
+					reactionPhysics(obj1, obj2);
+					return true;
+				}
 			}
+			return false;
 		}
 		void reactionPhysics(Object& obj1, Object& obj2) {
 			if (obj2.getType() == 'p') {
 				obj1.objState.velocity.x = -100;
+				obj1.objState.velocity.y = obj1.objState.velocity.y < 0 && obj1.objState.position.y <= obj2.objState.position.y + 300 ? -obj1.objState.velocity.y : obj1.objState.velocity.y;
+				obj1.objState.velocity.y = 100;
 			}
 			else if (obj2.getType() == 'f') {
+				obj1.objState.position.y = obj2.objState.position.y - 1000;
 				obj1.objState.velocity.y = 0;
+				obj1.objState.acceleration.y = 0;
 			}
 			else {
 				cerr << "incorrect collision" << endl;

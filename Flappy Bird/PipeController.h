@@ -2,6 +2,7 @@
 #define PIPECONTROLLER_H
 #include "Pipe.h"
 #include <vector>
+#include <random>
 
 using namespace std;
 class CollisionHandler;
@@ -10,19 +11,24 @@ class PipeController {
 	private:
 		vector<Pipe> pipes;
 		unsigned long long int ticks = 0;
-		unsigned int tickSpeed = 0;
-		unsigned int length = 0;
-		Vector2f spawnPoint;
+		unsigned short int tickSpeed = 0;
+		unsigned short int spawnLine = 700;
+		unsigned short int pipeGap = 150;
 		Vector2f pipeVelocity;
-		float cutoffPoint = -100;
+		short int cutoffPoint = -100;
 	public:
 		PipeController() : PipeController(60) {}
-		PipeController(unsigned int tickSpeed) : tickSpeed(tickSpeed), spawnPoint(700, 100), pipeVelocity(-100, 0) {}
-		void createPipe() { length++;  pipes.push_back(Pipe(spawnPoint, pipeVelocity, tickSpeed)); }
-		void destroyPipe() { cout << "pipe deleted-----------" << endl; length--; pipes.erase(pipes.begin()); }
-		unsigned int size() { return length; }
+		PipeController(unsigned int tickSpeed) : tickSpeed(tickSpeed), pipeVelocity(-100, 0) {}
+		void createPipe() { 
+			random_device rd;
+			mt19937 gen(rd());
+			uniform_real_distribution<> dis(double(pipeGap) / 2 + 100, 780 - double(pipeGap) / 2 - 70);
+			pipes.push_back(Pipe(Vector2f(spawnLine, dis(gen)), pipeVelocity, tickSpeed, pipeGap));
+		}
+		void destroyPipe() { pipes.erase(pipes.begin()); }
+		unsigned int size() { return pipes.size(); }
 		bool isPipeOutOfBounds() {
-			return !pipes.empty() && pipes.front().x() < cutoffPoint;
+			return !pipes.empty() && pipes[0].x() < cutoffPoint;
 		}
 		void incrementPipes() {
 			for (size_t it = 0; it < pipes.size(); it++) {
@@ -32,10 +38,10 @@ class PipeController {
 		}
 		void updatePipes() {
 			incrementPipes();
-			if (isPipeOutOfBounds() && length > 0) {
+			if (isPipeOutOfBounds() && pipes.size() > 0) {
 				destroyPipe();
 			}
-			if (length < 5 && ticks % (tickSpeed * 5) == 0) {
+			if (pipes.size() < 5 && ticks % (tickSpeed * 5) == 0) {
 				createPipe();
 			}
 			ticks++;

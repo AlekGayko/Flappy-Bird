@@ -15,16 +15,20 @@ class Player {
 			bird = Bird(Vector2f(100, 100), gravity, tickSpeed);
 		}
 		void jump() {
-			bird.jump();
+			if (!isDead) {
+				bird.jump();
+			}
 		}
 		void increment() {
 			if (isDead) {
-				bird.sprite.setRotation(max(-20, -ticksSinceDeath));
-				ticksSinceDeath++;
+				//bird.sprites[0].setRotation(max(-20, -ticksSinceDeath));
+				//ticksSinceDeath++;
 			}
 			bird.increment();
+			bird.rotateAnimation();
 		}
-		Sprite sprite() { return bird.getSprite(); }
+		Sprite sprite() { return bird.getSprites()[0]; }
+		bool dead() { return isDead; }
 };
 
 #endif

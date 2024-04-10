@@ -15,6 +15,7 @@ int main() {
 	backTexture.loadFromFile("background.jpg");
 	background.setTexture(backTexture);
 	unsigned int tickSpeed = 75;
+	unsigned int ticksSinceDeath = 1;
 	window.setFramerateLimit(tickSpeed);
 	GameManager manager = GameManager(tickSpeed);
 	while (window.isOpen()) {
@@ -31,7 +32,10 @@ int main() {
 		manager.nextTick();
 		manager.drawObjects(&window);
 		if (manager.gameOver()) {
-			//window.close();
+			ticksSinceDeath++;
+			if (ticksSinceDeath % (tickSpeed * 4) == 0) {
+				window.close();
+			}
 		}
 		window.display();
 	}

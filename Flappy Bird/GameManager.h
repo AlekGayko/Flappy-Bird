@@ -75,7 +75,7 @@ class GameManager {
 			}
 		}
 		bool gameOver() {
-			return player.dead() || collider.initCollision(pipeController, floors, player);
+			return gameFinished || player.dead() || collider.initCollision(pipeController, floors, player);
 		}
 };
 

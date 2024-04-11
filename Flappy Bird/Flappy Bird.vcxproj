@@ -134,6 +134,7 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AssetManager.h" />
     <ClInclude Include="CollisionHandler.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="FloorController.h" />

@@ -31,15 +31,12 @@ class Bird : public Object {
 			objState.acceleration.y = -45000;
 			objState.velocity.y = 0;
 			startRotating = true;
-			ticksSinceJump = 0;
 		}
 		void rotateAnimation() {
 			if (startRotating) {
-				ticksSinceJump++;
 				sprites[0].rotate(-angularVelocity);
 				if (sprites[0].getRotation() < 360 - 1.5 * maxRotationAngle && sprites[0].getRotation() > 3 * maxRotationAngle) {
 					startRotating = false;
-					ticksSinceJump = 0;
 				}			
 			}
 			else {

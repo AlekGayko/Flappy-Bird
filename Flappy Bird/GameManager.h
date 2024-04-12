@@ -61,7 +61,7 @@ class GameManager {
 			window.draw(player.sprite());
 			pipeController.draw(window);
 			floors.draw(window);
-			//assets.drawAssets(window);
+			assets.drawAssets(window);
 		}
 		bool gameOver() {
 			return gameFinished || player.dead() || collider.initCollision(pipeController, floors, player);

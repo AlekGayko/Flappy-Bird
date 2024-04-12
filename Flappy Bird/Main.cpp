@@ -9,9 +9,7 @@ using namespace sf;
 int main() {
 	sf::RenderWindow window(VideoMode(640, 980), "Flappy Bird", Style::Titlebar | Style::Close);
 	sf::Event event;
-	sf::Sprite background;
 	unsigned int tickSpeed = 75;
-	unsigned int ticksSinceDeath = 1;
 	window.setFramerateLimit(tickSpeed);
 	GameManager* manager = new GameManager(tickSpeed);
 	while (window.isOpen()) {

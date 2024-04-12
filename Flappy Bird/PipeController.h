@@ -49,9 +49,6 @@ class PipeController {
 			ticks++;
 			return;
 		}
-		vector<Pipe> allPipes() {
-			return pipes;
-		}
 		bool passedPipe(int xPos, int yPos) {
 			int tolerance = 20;
 			for (Pipe pipe : pipes) {
@@ -61,6 +58,12 @@ class PipeController {
 				}
 			}
 			return false;
+		}
+		void draw(RenderWindow& window) {
+			for (Pipe pipe : pipes) {
+				window.draw(pipe.getSprites()[0]);
+				window.draw(pipe.getSprites()[1]);
+			}
 		}
 };
 

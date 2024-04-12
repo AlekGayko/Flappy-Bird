@@ -59,15 +59,18 @@
     <ClInclude Include="AssetManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BackgroundController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\OneDrive\Documents\Aseprite-v1.3-beta21\Pipe.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="..\..\..\..\OneDrive\Documents\Aseprite-v1.3-beta21\Bird.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\Downloads\background.jpg">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="floor.jpg">

@@ -8,36 +8,34 @@ using namespace sf;
 
 int main() {
 	sf::RenderWindow window(VideoMode(640, 980), "Flappy Bird", Style::Titlebar | Style::Close);
-	sf::Vector2i mousePosition = Mouse::getPosition(window);
 	sf::Event event;
 	sf::Sprite background;
-	sf::Texture backTexture;
-	backTexture.loadFromFile("background.jpg");
-	background.setTexture(backTexture);
 	unsigned int tickSpeed = 75;
 	unsigned int ticksSinceDeath = 1;
 	window.setFramerateLimit(tickSpeed);
-	GameManager manager = GameManager(tickSpeed);
+	GameManager* manager = new GameManager(tickSpeed);
 	while (window.isOpen()) {
 		window.clear();
+		if (manager->hasRestart()) {
+			delete manager;
+			manager = new GameManager(tickSpeed);
+		}
+		else if (manager->hasQuit()) {
+			window.close();
+		}
 		while (window.pollEvent(event)) {
 			if (event.type == Event::Closed) {
 				window.close();
 			}
 			else {
-				manager.playerMove(event);
+				manager->eventHandle(event, window);
 			}
 		}
-		window.draw(background);
-		manager.nextTick();
-		manager.drawObjects(&window);
-		if (manager.gameOver()) {
-			ticksSinceDeath++;
-			if (ticksSinceDeath % (tickSpeed * 4) == 0) {
-				window.close();
-			}
-		}
+		manager->nextTick();
+		manager->drawObjects(window);
+		
 		window.display();
 	}
+	delete manager;
 	return 0;
 }

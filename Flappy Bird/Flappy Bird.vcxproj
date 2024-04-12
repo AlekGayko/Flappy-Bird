@@ -135,6 +135,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="Background.h" />
+    <ClInclude Include="BackgroundController.h" />
     <ClInclude Include="CollisionHandler.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="FloorController.h" />
@@ -149,7 +151,6 @@
     <ClInclude Include="TXTFetcher.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\Downloads\background.jpg" />
     <Image Include="..\..\..\..\OneDrive\Documents\Aseprite-v1.3-beta21\Bird.png" />
     <Image Include="..\..\..\..\OneDrive\Documents\Aseprite-v1.3-beta21\Pipe.png" />
     <Image Include="floor.jpg" />

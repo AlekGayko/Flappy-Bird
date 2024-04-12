@@ -21,7 +21,8 @@ class FloorController {
 		}
 	public:
 		FloorController() : FloorController(60) {}
-		FloorController(unsigned int tickSpeed) : spawnPoint1(0, 780), spawnPoint2(spawnPoint1.x + 997, spawnPoint1.y), tickSpeed(tickSpeed) {
+		FloorController(unsigned int tickSpeed) : spawnPoint1(0, 780), tickSpeed(tickSpeed) {
+			spawnPoint2 = Vector2f(spawnPoint1.x - cutoffPoint, spawnPoint1.y);
 			floors.push_back(Floor(tickSpeed, spawnPoint1));
 			floors.push_back(Floor(tickSpeed, spawnPoint2));
 		}
@@ -31,8 +32,12 @@ class FloorController {
 				floors[it].increment();
 			}
 		}
-		vector<Floor> getFloors() { return floors; }
 		unsigned int size() { return floors.size(); }
+		void draw(RenderWindow& window) {
+			for (Floor floor : floors) {
+				window.draw(floor.getSprites()[0]);
+			}
+		}
 };
 
 #endif

@@ -19,19 +19,6 @@ class Object {
 			this->tickSpeed = tickSpeed;
 			usualAcceleration = objState.acceleration.y;
 			this->type = type;
-			Sprite sprite;
-			if (type == 'p') {
-				image.loadFromFile("Pipe.PNG");
-			}
-			else if (type == 'b') {
-				image.loadFromFile("Bird.PNG");
-
-			}
-			else if (type == 'f') {
-				image.loadFromFile("floor.JPG");
-			}
-			sprite.setPosition(objState.position.x, objState.position.y);
-			sprites.push_back(sprite);
 		}
 		void increment() {
 			objState.position.x += objState.velocity.x / tickSpeed;

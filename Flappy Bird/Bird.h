@@ -14,6 +14,12 @@ class Bird : public Object {
 	public:
 		Bird() : Bird(Vector2f(100, 100), 100, 60) {}
 		Bird(Vector2f spawnPoint, float gravity, unsigned tickSpeed) : Object('b', spawnPoint, Vector2f(0, 0), Vector2f(0, gravity), tickSpeed) {
+			sf::Sprite sprite;
+			image.loadFromFile("Bird.png");
+			sprite.setTexture(image);
+			sprite.setPosition(objState.position.x, objState.position.y);
+			sprites.push_back(sprite);
+
 			float scalingFactor = 4;
 			sprites[0].setScale(scalingFactor, scalingFactor);
 			sf::Vector2u size = image.getSize();

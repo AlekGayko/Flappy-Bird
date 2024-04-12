@@ -65,29 +65,25 @@ class TextManager {
 				pipeCounter.setString(to_string(pipesPassed));
 			}
 		}
-		vector<sf::Text> texts() {
-			vector<sf::Text> textVector;
+		void draw(sf::RenderWindow& window) {
 			if (isGameOver) {
 				loadBestScore();
-				textVector.push_back(backlight(gameOver));
-				textVector.push_back(gameOver);
-				textVector.push_back(backlight(scoreLabel));
-				textVector.push_back(scoreLabel);
-				textVector.push_back(backlight(bestScoreLabel));
-				textVector.push_back(bestScoreLabel);			
-				textVector.push_back(backlight(bestScore));
-				textVector.push_back(bestScore);				
+				drawText(window, gameOver);
+				drawText(window, scoreLabel);
+				drawText(window, bestScoreLabel);
+				drawText(window, bestScore);
 				pipeCounter.setPosition(scoreLabel.getPosition());
 				pipeCounter.move(0, 75);
 				setOrigin(pipeCounter);
 			}
 			if (!gameStarted) {
-				textVector.push_back(backlight(startDirections));
-				textVector.push_back(startDirections);
+				drawText(window, startDirections);
 			}
-			textVector.push_back(backlight(pipeCounter));
-			textVector.push_back(pipeCounter);
-			return textVector;
+			drawText(window, pipeCounter);
+		}
+		void drawText(sf::RenderWindow& window, sf::Text text) {
+			window.draw(backlight(text));
+			window.draw(text);
 		}
 		sf::Text backlight(sf::Text text) {
 			sf::Text shadow(text);

@@ -1,7 +1,10 @@
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
 #include "GameManager.h"
+using namespace std;
+using namespace sf;
 
 int main() {
 	sf::RenderWindow window(VideoMode(640, 980), "Flappy Bird", Style::Titlebar | Style::Close);

@@ -75,7 +75,7 @@ class AssetManager {
 		bool gameOver = false;
 	public:
 		AssetManager() {
-			scoresheetTexture.loadFromFile("scoreSheet.png");
+			scoresheetTexture.loadFromFile("ScoreSheet.png");
 			scoresheet.setTexture(scoresheetTexture);
 			scoresheet.setOrigin(scoresheet.getGlobalBounds().left + scoresheet.getGlobalBounds().width / 2.0f, scoresheet.getGlobalBounds().top + scoresheet.getGlobalBounds().height / 2.0f);
 			scoresheet.setScale(8, 10);
